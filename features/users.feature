@@ -8,7 +8,7 @@ Feature: Users API endpoint
 
     Examples:
       | usersStub | endpoint | statusCode |
-      | users/list | /users | 400        |
+      | user/list | /users | 400        |
 
   Scenario Outline: Verify API returns the correct response if downstream system returns response
     Given I create the stub <usersStub> on node-example-microservice-mock

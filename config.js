@@ -1,5 +1,5 @@
 module.exports = {
-  timeout: 5 * 1000,
+  timeout: 60 * 1000,
 
   mock: {
     nodeExampleMicroservice: {
@@ -9,6 +9,6 @@ module.exports = {
   },
 
   urls: {
-    nodeExampleMicroservice: 'http://ob-node-example-microservice-master.lbg.eu-gb.mybluemix.net/node-example-microservice/v1.0'
+    nodeExampleMicroservice: 'http://j2-ob-core-node-example-microservice-master.lbg.eu-gb.mybluemix.net/node-example-microservice/v1.0'
   }
 };
