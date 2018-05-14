@@ -1,8 +1,8 @@
 const { Given } = require('cucumber');
-const createStub = require('../support/create-stub');
+const stub = require('../support/stub');
 
 Given(/^I create the stub (.*) on node-example-microservice-mock$/, function (file) {
-  const stub = require(`${__dirname}/../../stubs/${file}.json`);
+  const data = require(`${__dirname}/../../stubs/${file}.json`);
 
-  return createStub(this.config.mock.nodeExampleMicroservice.host, this.config.mock.nodeExampleMicroservice.port, stub);
+  return stub.create(this.config.mock.nodeExampleMicroservice.host, this.config.mock.nodeExampleMicroservice.port, data);
 });
