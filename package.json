@@ -1,0 +1,45 @@
+{
+  "name": "ob-pisp-e2e-bdd",
+  "version": "1.0.0",
+  "description": "OB PISP E2E BDD",
+  "config": {
+    "repository": "https://nexus.sandbox.extranet.group/nexus/content/groups/npm-master/"
+  },
+  "scripts": {
+    "format": "semistandard --env mocha --fix",
+    "pretest": "npm run format",
+    "test": "npm run-script cucumber || npm run-script report",
+    "cucumber": "cucumber-js './features/*.feature' --require './features/step-definitions/*.js' --require './features/support/*.js' --format progress --format json:reports/cucumber-report.json",
+    "report": "node './report.js'"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
+  },
+  "dependencies": {
+    "chai": "4.1.2",
+    "cucumber": "4.0.0",
+    "cucumber-html-reporter": "4.0.2",
+    "mockserver-client": "5.3.0",
+    "request": "2.83.0",
+    "request-promise": "4.2.2"
+  },
+  "devDependencies": {
+    "eslint": "4.12.1",
+    "eslint-config-semistandard": "12.0.0",
+    "eslint-config-standard": "11.0.0-beta.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-node": "6.0.0",
+    "eslint-plugin-promise": "3.6.0",
+    "semistandard": "12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "gerrit.sandbox.extranet.group:29418/ob-pisp-e2e-bdd"
+  },
+  "author": {
+    "name": "Ed Kelly",
+    "email": "ekelly@sapient.com"
+  },
+  "license": "UNLICENSED"
+}

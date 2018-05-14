@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+.sass-cache
+*.map
+.idea
+*.log
+*.iml
+junitresults.xml
+
+reports/*.json
+reports/*.html
