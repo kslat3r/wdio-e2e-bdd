@@ -9,7 +9,7 @@
     "format": "semistandard --env mocha --fix",
     "pretest": "npm run format",
     "test": "npm run-script cucumber || npm run-script report",
-    "cucumber": "cucumber-js './features/*.feature' --require './features/step-definitions/*.js' --require './features/support/*.js' --format progress --format json:reports/cucumber-report.json",
+    "cucumber": "cucumber-js './features/*.feature' --require './features/hooks/**/*.js' --require './features/step-definitions/**/*.js' --require './features/support/**/*.js' --format progress --format json:reports/cucumber-report.json",
     "report": "node './report.js'"
   },
   "engines": {
@@ -18,12 +18,13 @@
   },
   "dependencies": {
     "chai": "4.1.2",
+    "chromedriver": "^2.38.3",
     "cucumber": "4.0.0",
     "cucumber-html-reporter": "4.0.2",
     "mockserver-client": "5.3.0",
     "request": "2.83.0",
     "request-promise": "4.2.2",
-    "selenium-webdriver": "^4.0.0-alpha.1"
+    "selenium-webdriver": "4.0.0-alpha.1"
   },
   "devDependencies": {
     "eslint": "4.12.1",

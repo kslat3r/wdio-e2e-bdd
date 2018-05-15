@@ -9,3 +9,4 @@ junitresults.xml
 
 reports/*.json
 reports/*.html
+screenshots/*.png
