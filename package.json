@@ -6,9 +6,9 @@
     "repository": "https://nexus.sandbox.extranet.group/nexus/content/groups/npm-master/"
   },
   "scripts": {
+    "prestart": "npm run format",
     "format": "semistandard --env mocha --fix",
-    "pretest": "npm run format",
-    "test": "npm run-script cucumber || npm run-script report",
+    "start": "npm run-script cucumber || npm run-script report",
     "cucumber": "cucumber-js './features/*.feature' --require './features/hooks/**/*.js' --require './features/step-definitions/**/*.js' --require './features/support/**/*.js' --format progress --format json:reports/cucumber-report.json",
     "report": "node './report.js'"
   },
