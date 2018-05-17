@@ -1,4 +1,5 @@
 const { Given, Then } = require('cucumber');
+const url = require('../support/url');
 const request = require('request-promise');
 const { expect } = require('chai');
 
@@ -8,7 +9,7 @@ let response;
 Given(/^I create a GET request to (.*) on node-example-microservice$/, function (endpoint) {
   options = {
     method: 'GET',
-    uri: `${this.config.urls.nodeExampleMicroservice}/${endpoint}`,
+    uri: `${url.get('nodeExampleMicroservice')}/${endpoint}`,
     json: true,
     timeout: 100000,
     resolveWithFullResponse: true

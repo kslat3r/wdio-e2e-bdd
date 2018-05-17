@@ -19,4 +19,4 @@ COPY . /usr/src/app
 
 # Run
 EXPOSE 3000
-CMD [ "npm", "test" ]
+CMD [ "npm", "start" ]
