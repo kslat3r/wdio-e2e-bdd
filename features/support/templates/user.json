@@ -19,25 +19,5 @@
     "name": "Romaguera-Crona",
     "catchPhrase": "Multi-layered client-server neural-net",
     "bs": "harness real-time e-markets"
-  },
-  "todos": [
-    {
-      "userId": 1,
-      "id": 1,
-      "title": "My todo",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": 2,
-      "title": "My todo",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": 3,
-      "title": "My todo",
-      "completed": false
-    }
-  ]
+  }
 }
