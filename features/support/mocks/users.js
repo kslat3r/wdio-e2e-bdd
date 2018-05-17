@@ -1,8 +1,8 @@
-const Builder = require('./builder');
+const MockBuilder = require('./builder');
 const merge = require('deepmerge');
 const template = require('../templates/user.json');
 
-class UsersBuilder extends Builder {
+class UsersMockBuilder extends MockBuilder {
   constructor (id) {
     super();
 
@@ -22,4 +22,4 @@ class UsersBuilder extends Builder {
   }
 }
 
-module.exports = UsersBuilder;
+module.exports = UsersMockBuilder;

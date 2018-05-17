@@ -1,8 +1,8 @@
-const Builder = require('./builder');
+const MockBuilder = require('./builder');
 const merge = require('deepmerge');
 const template = require('../templates/todo.json');
 
-class TodosBuilder extends Builder {
+class TodosMockBuilder extends MockBuilder {
   constructor () {
     super();
 
@@ -33,4 +33,4 @@ class TodosBuilder extends Builder {
   }
 }
 
-module.exports = TodosBuilder;
+module.exports = TodosMockBuilder;

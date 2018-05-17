@@ -16,11 +16,11 @@ Feature: Node Example Microservice API
     And I set the header x-lbg-channel to <x-lbg-channel>
     And I request user with ID <id>
     Then I should receive the status code <statusCode>
-    And I should receive the response body <body>
+    And I should receive a user with ID <id> and todos
 
     Examples:
-      | id | x-lbg-txn-correlation-id | x-lbg-brand | x-lbg-channel | statusCode | body |
-      | 1 | 12345 | LYDS | RC | 200 | user-get |
+      | id | x-lbg-txn-correlation-id | x-lbg-brand | x-lbg-channel | statusCode |
+      | 1 | 12345 | LYDS | RC | 200 |
 
   Scenario Outline: Verify API returns 400 for invalid request to /users
     Given user with ID <id> exists with todos
@@ -38,9 +38,9 @@ Feature: Node Example Microservice API
     And I set the header x-lbg-channel to <x-lbg-channel>
     And I request all users
     Then I should receive the status code <statusCode>
-    And I should receive the response body <body>
+    And I should receive a list of users containing ID <id> and todos
 
     Examples:
-      | id | x-lbg-txn-correlation-id | x-lbg-brand | x-lbg-channel | statusCode | body |
-      | 1 | 12345 | LYDS | RC | 200 | user-list |
+      | id | x-lbg-txn-correlation-id | x-lbg-brand | x-lbg-channel | statusCode |
+      | 1 | 12345 | LYDS | RC | 200 |
 

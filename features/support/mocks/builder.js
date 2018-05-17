@@ -1,6 +1,6 @@
 const { mockServerClient } = require('mockserver-client');
 
-class Builder {
+class MockBuilder {
   setMethod (method) {
     this.method = method;
 
@@ -94,4 +94,4 @@ class Builder {
   }
 }
 
-module.exports = Builder;
+module.exports = MockBuilder;

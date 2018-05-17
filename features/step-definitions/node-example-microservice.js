@@ -1,11 +1,13 @@
 const { Given, When, Then } = require('cucumber');
-const UserBuilder = require('../support/builders/user');
-const UsersBuilder = require('../support/builders/users');
-const TodosBuilder = require('../support/builders/todos');
+const UserMockBuilder = require('../support/mocks/user');
+const UsersMockBuilder = require('../support/mocks/users');
+const TodosMockBuilder = require('../support/mocks/todos');
 const getMock = require('../support/get-mock');
 const getUrl = require('../support/get-url');
 const request = require('request-promise');
 const { expect } = require('chai');
+const UserResponseBuilder = require('../support/responses/user');
+const UsersResponseBuilder = require('../support/responses/users');
 
 let headers = {};
 let response;
@@ -13,9 +15,9 @@ let response;
 Given(/^user with ID (.*) exists with todos$/, function (id) {
   const promises = [];
 
-  const user = new UserBuilder(id);
-  const users = new UsersBuilder(id);
-  const todos = new TodosBuilder()
+  const user = new UserMockBuilder(id);
+  const users = new UsersMockBuilder(id);
+  const todos = new TodosMockBuilder()
     .setUserId(id);
 
   const mockDetails = getMock('nodeExampleMicroservice');
@@ -84,8 +86,14 @@ Then(/^I should receive the status code (.*)$/, (statusCode) => {
   expect(response.statusCode).to.equal(parseInt(statusCode));
 });
 
-Then(/^I should receive the response body (.*)$/, (file) => {
-  const json = require(`${__dirname}/../../data/response-body/${file}.json`);
+Then(/^I should receive a user with ID (.*) and todos$/, (id) => {
+  const user = new UserResponseBuilder(id);
 
-  expect(response.body).to.deep.equal(json);
+  user.compareTo(response.body);
+});
+
+Then(/^I should receive a list of users containing ID (.*) and todos$/, (id) => {
+  const users = new UsersResponseBuilder(id);
+
+  users.compareTo(response.body);
 });
