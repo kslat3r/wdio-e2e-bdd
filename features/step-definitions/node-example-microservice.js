@@ -22,6 +22,10 @@ Given(/^user with ID (.*) exists with todos$/, function (id) {
 
   const mockDetails = getMock('nodeExampleMicroservice');
 
+  if (!mockDetails) {
+    return;
+  }
+
   promises.push(users.create(mockDetails));
   promises.push(user.create(mockDetails));
   promises.push(todos.create(mockDetails));
