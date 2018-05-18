@@ -8,6 +8,7 @@ exports.config = merge(wdioConf.config, {
   },
 
   urls: {
-    nodeExampleMicroservice: 'http://j2-ob-core-node-example-microservice-master.lbg.eu-gb.mybluemix.net/node-example-microservice/v1.0'
+    nodeExampleMicroservice: 'http://j2-ob-core-node-example-microservice-master.lbg.eu-gb.mybluemix.net/node-example-microservice/v1.0',
+    standingOrderServiceRequestChannelApi: 'http://j2-ob-pisp-sosr-channel-api-master.lbg.eu-gb.mybluemix.net/ob-pisp-standing-order-service-requests-channel-api/v2.0'
   }
 });

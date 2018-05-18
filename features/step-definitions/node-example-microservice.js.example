@@ -5,13 +5,10 @@ const TodosMockBuilder = require('../support/mocks/todos');
 const getMock = require('../support/get-mock');
 const getUrl = require('../support/get-url');
 const request = require('request-promise');
-const { expect } = require('chai');
 const UserResponseBuilder = require('../support/responses/user');
 const UsersResponseBuilder = require('../support/responses/users');
-const ErrorResponseBuilder = require('../support/responses/error');
-
-let headers = {};
-let response;
+const headersStore = require('../support/stores/headers');
+const responseStore = require('../support/stores/response');
 
 Given(/^user with ID (.*) exists with todos$/, async function (id) {
   const user = new UserMockBuilder(id);
@@ -52,8 +49,10 @@ When(/^I request user with ID (.*)$/, async function (id) {
     json: true,
     timeout: 100000,
     resolveWithFullResponse: true,
-    headers
+    headers: headersStore.getAll()
   };
+
+  let response;
 
   try {
     response = await request(opts);
@@ -64,7 +63,7 @@ When(/^I request user with ID (.*)$/, async function (id) {
     };
   }
 
-  headers = {};
+  responseStore.set(response);
 });
 
 When(/^I request all users$/, async function () {
@@ -74,8 +73,10 @@ When(/^I request all users$/, async function () {
     json: true,
     timeout: 100000,
     resolveWithFullResponse: true,
-    headers
+    headers: headersStore.getAll()
   };
+
+  let response;
 
   try {
     response = await request(opts);
@@ -86,32 +87,17 @@ When(/^I request all users$/, async function () {
     };
   }
 
-  headers = {};
-});
-
-When(/^I set the header (.*) to (.*)$/, (header, value) => {
-  headers = headers || {};
-  headers[header] = value;
-});
-
-Then(/^I should receive the status code (.*)$/, (statusCode) => {
-  expect(response.statusCode).to.equal(parseInt(statusCode));
+  responseStore.set(response);
 });
 
 Then(/^I should receive a user with ID (.*) and todos$/, (id) => {
   const user = new UserResponseBuilder(id);
 
-  user.compareTo(response.body);
+  user.compareTo(responseStore.get().body);
 });
 
 Then(/^I should receive a list of users containing ID (.*) and todos$/, (id) => {
   const users = new UsersResponseBuilder(id);
 
-  users.compareTo(response.body);
-});
-
-Then(/^I should receive an error response with status code (.*), error code (.*) and message "(.*)"$/, (statusCode, errorCode, message) => {
-  const error = new ErrorResponseBuilder(statusCode, errorCode, message);
-
-  error.compareTo(response.body);
+  users.compareTo(responseStore.get().body);
 });
