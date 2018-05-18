@@ -1,4 +1,5 @@
-const { mockServerClient } = require('mockserver-client');
+const merge = require('deepmerge');
+const errorTemplate = require('../templates/error.json');
 
 class MockBuilder {
   setMethod (method) {
@@ -32,7 +33,7 @@ class MockBuilder {
   }
 
   setStatusCode (statusCode) {
-    this.statusCode = statusCode;
+    this.statusCode = parseInt(statusCode, 10);
 
     return this;
   }
@@ -49,12 +50,22 @@ class MockBuilder {
     return this;
   }
 
-  create (mock) {
-    if (!mock) {
+  setErrorCode (errorCode) {
+    this.errorCode = errorCode;
+
+    return this;
+  }
+
+  setErrorMessage (errorMessage) {
+    this.errorMessage = errorMessage;
+
+    return this;
+  }
+
+  create (client) {
+    if (!client) {
       return;
     }
-
-    const client = mockServerClient(mock.host, mock.port);
 
     const httpRequest = {
       method: this.method,
@@ -76,6 +87,16 @@ class MockBuilder {
       }));
     }
 
+    if (this.errorCode && this.errorMessage) {
+      this.body = merge(errorTemplate, {
+        error: {
+          statusCode: this.statusCode,
+          code: this.errorCode,
+          message: this.errorMessage
+        }
+      });
+    }
+
     const httpResponse = {
       statusCode: this.statusCode,
       body: typeof this.responseBody === 'object' ? JSON.stringify(this.responseBody) : this.responseBody
@@ -92,7 +113,8 @@ class MockBuilder {
       httpRequest,
       httpResponse,
       times: {
-        unlimited: true
+        remainingTimes: 1,
+        unlimited: false
       }
     });
   }

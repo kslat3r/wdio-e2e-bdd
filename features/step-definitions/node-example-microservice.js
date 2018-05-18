@@ -8,13 +8,14 @@ const request = require('request-promise');
 const { expect } = require('chai');
 const UserResponseBuilder = require('../support/responses/user');
 const UsersResponseBuilder = require('../support/responses/users');
+const ErrorResponseBuilder = require('../support/responses/error');
 
 let headers = {};
 let response;
 
 Given(/^user with ID (.*) exists with todos$/, async function (id) {
   const user = new UserMockBuilder(id);
-  const users = new UsersMockBuilder(id);
+  const users = new UsersMockBuilder([id]);
   const todos = new TodosMockBuilder()
     .setUserId(id);
 
@@ -23,6 +24,25 @@ Given(/^user with ID (.*) exists with todos$/, async function (id) {
   await users.create(mockDetails);
   await user.create(mockDetails);
   await todos.create(mockDetails);
+});
+
+Given(/^user with ID (.*) throws an error from downstream system with statusCode (.*), error code (.*) and message "(.*)"$/, async function (id, statusCode, errorCode, message) {
+  const user = new UserMockBuilder(id)
+    .setStatusCode(statusCode)
+    .setErrorCode(errorCode)
+    .setErrorMessage(message);
+
+  const mockDetails = getMock('nodeExampleMicroservice');
+
+  await user.create(mockDetails);
+});
+
+Given(/^retrieving all users throws an error from downstream system with statusCode (.*), error code (.*) and message "(.*)"$/, async function (statusCode, errorCode, message) {
+  const users = new UsersMockBuilder([1]);
+
+  const mockDetails = getMock('nodeExampleMicroservice');
+
+  await users.create(mockDetails);
 });
 
 When(/^I request user with ID (.*)$/, async function (id) {
@@ -88,4 +108,10 @@ Then(/^I should receive a list of users containing ID (.*) and todos$/, (id) => 
   const users = new UsersResponseBuilder(id);
 
   users.compareTo(response.body);
+});
+
+Then(/^I should receive an error response with status code (.*), error code (.*) and message "(.*)"$/, (statusCode, errorCode, message) => {
+  const error = new ErrorResponseBuilder(statusCode, errorCode, message);
+
+  error.compareTo(response.body);
 });

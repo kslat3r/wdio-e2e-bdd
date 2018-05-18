@@ -1,3 +1,5 @@
+const afterScenario = require('./hooks/after-scenario');
+
 exports.config = {
   mocks: {},
   urls: {},
@@ -147,9 +149,9 @@ exports.config = {
     profile: [], // <string[]> (name) specify the profile to use
     strict: false, // <boolean> fail if there are any undefined or pending steps
     tags: [], // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-    timeout: 20000, // <number> timeout for step definitions
+    timeout: 100000, // <number> timeout for step definitions
     ignoreUndefinedDefinitions: false // <boolean> Enable this config to treat undefined definitions as warnings.
-  }
+  },
 
   //
   // =====
@@ -219,8 +221,7 @@ exports.config = {
    * Runs after a Cucumber scenario
    * @param {Object} scenario scenario details
    */
-  // afterScenario: function (scenario) {
-  // },
+  afterScenario
   /**
    * Runs after a Cucumber feature
    * @param {Object} feature feature details

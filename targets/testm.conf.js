@@ -1,12 +1,10 @@
 const merge = require('deepmerge');
 const wdioConf = require('../wdio.conf.js');
+const { mockServerClient } = require('mockserver-client');
 
 exports.config = merge(wdioConf.config, {
   mocks: {
-    nodeExampleMicroservice: {
-      host: 'ob-core-node-example-api-mock-testm.lbg.eu-gb.mybluemix.net',
-      port: 80
-    }
+    nodeExampleMicroservice: mockServerClient('ob-core-node-example-api-mock-testm.lbg.eu-gb.mybluemix.net', 80)
   },
 
   urls: {
