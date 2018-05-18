@@ -12,9 +12,7 @@ const UsersResponseBuilder = require('../support/responses/users');
 let headers = {};
 let response;
 
-Given(/^user with ID (.*) exists with todos$/, function (id) {
-  const promises = [];
-
+Given(/^user with ID (.*) exists with todos$/, async function (id) {
   const user = new UserMockBuilder(id);
   const users = new UsersMockBuilder(id);
   const todos = new TodosMockBuilder()
@@ -22,18 +20,12 @@ Given(/^user with ID (.*) exists with todos$/, function (id) {
 
   const mockDetails = getMock('nodeExampleMicroservice');
 
-  if (!mockDetails) {
-    return;
-  }
-
-  promises.push(users.create(mockDetails));
-  promises.push(user.create(mockDetails));
-  promises.push(todos.create(mockDetails));
-
-  return Promise.all(promises);
+  await users.create(mockDetails);
+  await user.create(mockDetails);
+  await todos.create(mockDetails);
 });
 
-When(/^I request user with ID (.*)$/, function (id) {
+When(/^I request user with ID (.*)$/, async function (id) {
   const opts = {
     method: 'GET',
     uri: `${getUrl('nodeExampleMicroservice')}/users/${id}`,
@@ -43,21 +35,19 @@ When(/^I request user with ID (.*)$/, function (id) {
     headers
   };
 
-  return request(opts)
-    .then(_response => {
-      headers = {};
-      response = _response;
-    })
-    .catch(error => {
-      headers = {};
-      response = {
-        statusCode: error.statusCode,
-        body: error.error
-      };
-    });
+  try {
+    response = await request(opts);
+  } catch (e) {
+    response = {
+      statusCode: e.statusCode,
+      body: e.error
+    };
+  }
+
+  headers = {};
 });
 
-When(/^I request all users$/, function () {
+When(/^I request all users$/, async function () {
   const opts = {
     method: 'GET',
     uri: `${getUrl('nodeExampleMicroservice')}/users`,
@@ -67,18 +57,16 @@ When(/^I request all users$/, function () {
     headers
   };
 
-  return request(opts)
-    .then(_response => {
-      headers = {};
-      response = _response;
-    })
-    .catch(error => {
-      headers = {};
-      response = {
-        statusCode: error.statusCode,
-        body: error.error
-      };
-    });
+  try {
+    response = await request(opts);
+  } catch (e) {
+    response = {
+      statusCode: e.statusCode,
+      body: e.error
+    };
+  }
+
+  headers = {};
 });
 
 When(/^I set the header (.*) to (.*)$/, (header, value) => {

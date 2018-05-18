@@ -6,7 +6,7 @@ class TodosMockBuilder extends MockBuilder {
   constructor () {
     super();
 
-    super.setMethod('GET')
+    this.setMethod('GET')
       .setPath(`/node-example-enterprise-service/v1.0/todos`)
       .setHeaders({
         'x-lbg-channel': 'RC',
@@ -27,7 +27,7 @@ class TodosMockBuilder extends MockBuilder {
       }));
     }
 
-    super.setResponseBody(responseBody);
+    this.setResponseBody(responseBody);
 
     return this;
   }

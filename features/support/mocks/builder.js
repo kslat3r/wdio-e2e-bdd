@@ -50,6 +50,10 @@ class MockBuilder {
   }
 
   create (mock) {
+    if (!mock) {
+      return;
+    }
+
     const client = mockServerClient(mock.host, mock.port);
 
     const httpRequest = {

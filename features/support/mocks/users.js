@@ -6,7 +6,7 @@ class UsersMockBuilder extends MockBuilder {
   constructor (id) {
     super();
 
-    super.setMethod('GET')
+    this.setMethod('GET')
       .setPath(`/node-example-enterprise-service/v1.0/users`)
       .setHeaders({
         'x-lbg-channel': 'RC',
