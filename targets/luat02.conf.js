@@ -8,6 +8,7 @@ exports.config = merge(wdioConf.config, {
   },
 
   urls: {
-    nodeExampleMicroservice: 'https://luat02-es-ob.digital.service.group:31011/node-example-microservice/v1.0'
+    nodeExampleMicroservice: 'https://luat02-es-ob.digital.service.group:31011/node-example-microservice/v1.0',
+    standingOrderServiceRequestChannelApi: 'https://luat02-es-ob.digital.service.group:31011/ob-pisp-standing-order-service-requests-channel-api/v2.0'
   }
 });

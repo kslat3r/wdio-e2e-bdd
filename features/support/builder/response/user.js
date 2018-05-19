@@ -1,7 +1,7 @@
 const ResponseBuilder = require('./builder');
 const merge = require('deepmerge');
-const userTemplate = require('../templates/user.json');
-const todoTemplate = require('../templates/todo.json');
+const userTemplate = require('../../template/response/user.json');
+const todoTemplate = require('../../template/response/todo.json');
 
 class UserResponseBuilder extends ResponseBuilder {
   constructor (id) {

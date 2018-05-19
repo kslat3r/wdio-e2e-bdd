@@ -1,6 +1,6 @@
 const MockBuilder = require('./builder');
 const merge = require('deepmerge');
-const template = require('../templates/todo.json');
+const template = require('../../template/response/todo.json');
 
 class TodosMockBuilder extends MockBuilder {
   constructor () {

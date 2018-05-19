@@ -1,14 +1,15 @@
 const { Given, When, Then } = require('cucumber');
-const UserMockBuilder = require('../support/mocks/user');
-const UsersMockBuilder = require('../support/mocks/users');
-const TodosMockBuilder = require('../support/mocks/todos');
+const UserMockBuilder = require('../support/builder/mock/user');
+const UsersMockBuilder = require('../support/builder/mock/users');
+const TodosMockBuilder = require('../support/builder/mock/todos');
 const getMock = require('../support/get-mock');
 const getUrl = require('../support/get-url');
+const nodeExampleMicroserviceHeadersTemplate = require('../support/template/headers/node-example-microservice.json');
 const request = require('request-promise');
-const UserResponseBuilder = require('../support/responses/user');
-const UsersResponseBuilder = require('../support/responses/users');
-const headersStore = require('../support/stores/headers');
-const responseStore = require('../support/stores/response');
+const UserResponseBuilder = require('../support/builder/response/user');
+const UsersResponseBuilder = require('../support/builder/response/users');
+const headerStore = require('../support/store/header');
+const responseStore = require('../support/store/response');
 
 Given(/^user with ID (.*) exists with todos$/, async function (id) {
   const user = new UserMockBuilder(id);
@@ -42,6 +43,10 @@ Given(/^retrieving all users throws an error from downstream system with statusC
   await users.create(mockDetails);
 });
 
+When(/^I set the default headers for node example microservice API$/, function () {
+  headerStore.setAll(nodeExampleMicroserviceHeadersTemplate);
+});
+
 When(/^I request user with ID (.*)$/, async function (id) {
   const opts = {
     method: 'GET',
@@ -49,7 +54,7 @@ When(/^I request user with ID (.*)$/, async function (id) {
     json: true,
     timeout: 100000,
     resolveWithFullResponse: true,
-    headers: headersStore.getAll()
+    headers: headerStore.getAll()
   };
 
   let response;
@@ -73,7 +78,7 @@ When(/^I request all users$/, async function () {
     json: true,
     timeout: 100000,
     resolveWithFullResponse: true,
-    headers: headersStore.getAll()
+    headers: headerStore.getAll()
   };
 
   let response;

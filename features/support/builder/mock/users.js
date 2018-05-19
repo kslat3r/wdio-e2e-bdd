@@ -1,6 +1,6 @@
 const MockBuilder = require('./builder');
 const merge = require('deepmerge');
-const template = require('../templates/user.json');
+const template = require('../../template/response/user.json');
 
 class UsersMockBuilder extends MockBuilder {
   constructor (ids) {

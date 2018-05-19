@@ -1,22 +1,25 @@
 const { When } = require('cucumber');
 const getUrl = require('../support/get-url');
 const request = require('request-promise');
-const headersStore = require('../support/stores/headers');
-const responseStore = require('../support/stores/response');
-const body = require('../support/templates/standing-order-service-request.json');
+const standingOrderServiceRequestHeadersTemplate = require('../support/template/headers/standing-order-service-request.json');
+const headerStore = require('../support/store/header');
+const responseStore = require('../support/store/response');
+const body = require('../support/template/request/standing-order-service-request.json');
 
-When(/^I make a request to create a standing order service request$/, async function () {
+When(/^I set the default headers for standing order service request API$/, function () {
+  headerStore.setAll(standingOrderServiceRequestHeadersTemplate);
+});
+
+When(/^I make the request to create a standing order service request$/, async function () {
   const opts = {
     method: 'POST',
     uri: `${getUrl('standingOrderServiceRequestChannelApi')}/standing-order-service-requests`,
     json: true,
     timeout: 100000,
     resolveWithFullResponse: true,
-    headers: headersStore.getAll(),
+    headers: headerStore.getAll(),
     body
   };
-
-  console.log(opts);
 
   let response;
 

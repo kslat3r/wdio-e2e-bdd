@@ -8,6 +8,7 @@ exports.config = merge(wdioConf.config, {
   },
 
   urls: {
-    nodeExampleMicroservice: 'https://nft-es-ob.digital.service.group:31011/node-example-microservice/v1.0'
+    nodeExampleMicroservice: 'https://nft-es-ob.digital.service.group:31011/node-example-microservice/v1.0',
+    standingOrderServiceRequestChannelApi: 'https://nft-es-ob.digital.service.group:31011/ob-pisp-standing-order-service-requests-channel-api/v2.0'
   }
 });

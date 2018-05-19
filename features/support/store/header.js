@@ -5,6 +5,10 @@ module.exports = {
     headers[header] = value;
   },
 
+  setAll: (_headers) => {
+    headers = _headers;
+  },
+
   get: (header) => {
     return headers[header];
   },

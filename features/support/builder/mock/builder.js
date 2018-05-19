@@ -1,5 +1,5 @@
 const merge = require('deepmerge');
-const errorTemplate = require('../templates/error.json');
+const errorTemplate = require('../../template/response/error.json');
 
 class MockBuilder {
   setMethod (method) {

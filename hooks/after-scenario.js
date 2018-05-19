@@ -1,8 +1,8 @@
-const headersStore = require('../features/support/stores/headers');
-const responseStore = require('../features/support/stores/response');
+const headerStore = require('../features/support/store/header');
+const responseStore = require('../features/support/store/response');
 
 module.exports = function (scenario) {
-  headersStore.deleteAll();
+  headerStore.deleteAll();
   responseStore.delete();
 
   // reset mocks
