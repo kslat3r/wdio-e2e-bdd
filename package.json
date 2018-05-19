@@ -25,6 +25,7 @@
     "npm": "5.6.0"
   },
   "dependencies": {
+    "axe-core": "^3.0.2",
     "chai": "4.1.2",
     "deepmerge": "^2.1.0",
     "mochawesome-report-generator": "2.3.2",

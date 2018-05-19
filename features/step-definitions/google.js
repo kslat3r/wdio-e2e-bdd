@@ -9,9 +9,9 @@ Given(/^I navigate to Google$/, () => {
 });
 
 When(/^I perform a search$/, () => {
-  google.search(browser, 'cucumber');
+  google.search(browser, 'facebook log in');
 });
 
 Then(/^the browser title should be correct$/, () => {
-  expect(browser.getTitle()).to.equal(`cucumber ${google.titleSuffix}`);
+  expect(browser.getTitle()).to.equal(`facebook log in ${google.titleSuffix}`);
 });
