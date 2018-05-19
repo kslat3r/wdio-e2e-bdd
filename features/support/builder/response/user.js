@@ -20,6 +20,8 @@ class UserResponseBuilder extends ResponseBuilder {
       id: parseInt(id, 10),
       todos
     });
+
+    return this;
   }
 }
 

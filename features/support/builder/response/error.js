@@ -13,6 +13,8 @@ class ErrorResponseBuilder extends ResponseBuilder {
         message
       }
     });
+
+    return this;
   }
 }
 

@@ -19,6 +19,8 @@ class UsersMockBuilder extends MockBuilder {
       })
       .setStatusCode(200)
       .setResponseBody(responseBody);
+
+    return this;
   }
 }
 

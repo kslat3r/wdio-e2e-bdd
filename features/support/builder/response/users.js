@@ -22,6 +22,8 @@ class UsersResponseBuilder extends ResponseBuilder {
         todos
       })
     ];
+
+    return this;
   }
 }
 

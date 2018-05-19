@@ -15,6 +15,8 @@ class TodosMockBuilder extends MockBuilder {
       })
       .setStatusCode(200)
       .setResponseBody([]);
+
+    return this;
   }
 
   setUserId (userId) {

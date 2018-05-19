@@ -17,6 +17,8 @@ class UserMockBuilder extends MockBuilder {
       .setResponseBody(merge(template, {
         id: parseInt(id, 10)
       }));
+
+    return this;
   }
 }
 
