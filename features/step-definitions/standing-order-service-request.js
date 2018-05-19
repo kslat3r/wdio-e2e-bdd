@@ -97,6 +97,7 @@ When(/^I create a standing order service request that has different payment date
 
 Then(/^I should receive a standing order service request response that is valid$/, function () {
   const responseBody = responseStore.get().body;
+
   const id = responseBody.Data.StandingOrderServiceRequestId;
   const creationDateTime = responseBody.Data.CreationDateTime;
   const statusUpdateDateTime = responseBody.Data.StatusUpdateDateTime;
