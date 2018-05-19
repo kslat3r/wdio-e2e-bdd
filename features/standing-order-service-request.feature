@@ -2,9 +2,9 @@ Feature: Standing Order Service Request API
 
   Scenario: Verify API returns the correct response when standing order service request is created
     Given I set the default headers for standing order service request API
-    When I create a standing order service request that is valid
+    When I create a standing order service request
     Then I should receive the status code 201
-    And I should receive a standing order service request response that is valid
+    And I should receive a standing order service request response
 
   Scenario: Verify API returns the correct status code when standing order service request payment amounts are different
     Given I set the default headers for standing order service request API

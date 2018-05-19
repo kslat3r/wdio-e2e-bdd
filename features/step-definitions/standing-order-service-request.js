@@ -20,7 +20,7 @@ const defaultOpts = {
   resolveWithFullResponse: true
 };
 
-When(/^I create a standing order service request that is valid$/, async function () {
+When(/^I create a standing order service request$/, async function () {
   const body = new StandingOrderServiceRequestRequestBuilder()
     .get();
 
@@ -95,7 +95,7 @@ When(/^I create a standing order service request that has different payment date
   responseStore.set(response);
 });
 
-Then(/^I should receive a standing order service request response that is valid$/, function () {
+Then(/^I should receive a standing order service request response$/, function () {
   const responseBody = responseStore.get().body;
 
   const id = responseBody.Data.StandingOrderServiceRequestId;
