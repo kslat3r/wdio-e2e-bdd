@@ -1,4 +1,4 @@
-const MockBuilder = require('../../../generic/builder/mock');
+const MockBuilder = require('../../../common/builder/mock');
 const merge = require('deepmerge');
 const template = require('../../template/response/user.json');
 

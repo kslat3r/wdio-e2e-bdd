@@ -2,14 +2,14 @@ const { Given, When, Then } = require('cucumber');
 const UserMockBuilder = require('../support/node-example-microservice/builder/mock/user');
 const UsersMockBuilder = require('../support/node-example-microservice/builder/mock/users');
 const TodosMockBuilder = require('../support/node-example-microservice/builder/mock/todos');
-const getMock = require('../support/generic/get-mock');
-const getUrl = require('../support/generic/get-url');
+const getMock = require('../support/common/get-mock');
+const getUrl = require('../support/common/get-url');
 const defaultHeaders = require('../support/node-example-microservice/template/headers/default.json');
 const request = require('request-promise');
 const UserResponseBuilder = require('../support/node-example-microservice/builder/response/user');
 const UsersResponseBuilder = require('../support/node-example-microservice/builder/response/users');
-const headerStore = require('../support/generic/store/header');
-const responseStore = require('../support/generic/store/response');
+const headerStore = require('../support/common/store/header');
+const responseStore = require('../support/common/store/response');
 
 Given(/^user with ID (.*) exists with todos$/, async function (id) {
   const user = new UserMockBuilder(id);

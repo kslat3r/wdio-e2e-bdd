@@ -1,4 +1,4 @@
-const ResponseBuilder = require('../../../generic/builder/response');
+const ResponseBuilder = require('../../../common/builder/response');
 const merge = require('deepmerge');
 const userTemplate = require('../../template/response/user.json');
 const todoTemplate = require('../../template/response/todo.json');

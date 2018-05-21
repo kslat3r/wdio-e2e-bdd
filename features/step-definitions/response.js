@@ -1,7 +1,7 @@
 const { Then } = require('cucumber');
 const { expect } = require('chai');
-const ErrorResponseBuilder = require('../support/generic/builder/error');
-const responseStore = require('../support/generic/store/response');
+const ErrorResponseBuilder = require('../support/common/builder/error');
+const responseStore = require('../support/common/store/response');
 
 Then(/^I should receive the status code (.*)$/, (statusCode) => {
   expect(responseStore.get().statusCode).to.equal(parseInt(statusCode));

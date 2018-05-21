@@ -1,4 +1,4 @@
-const ResponseBuilder = require('../../../generic/builder/response');
+const ResponseBuilder = require('../../../common/builder/response');
 const merge = require('deepmerge');
 const data = require('../../template/response/standing-order-service-request.json');
 
