@@ -1,12 +1,10 @@
-const ResponseBuilder = require('./builder');
+const ResponseBuilder = require('../../../generic/builder/response');
 const merge = require('deepmerge');
 const userTemplate = require('../../template/response/user.json');
 const todoTemplate = require('../../template/response/todo.json');
 
 class UserResponseBuilder extends ResponseBuilder {
   constructor (id) {
-    super();
-
     const todos = [];
 
     for (let i = 1; i < 4; i++) {
@@ -16,10 +14,10 @@ class UserResponseBuilder extends ResponseBuilder {
       }));
     }
 
-    this.data = merge(userTemplate, {
+    super(merge(userTemplate, {
       id: parseInt(id, 10),
       todos
-    });
+    }));
 
     return this;
   }

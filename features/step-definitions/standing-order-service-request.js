@@ -1,15 +1,15 @@
 const { Given, When, Then } = require('cucumber');
-const getUrl = require('../support/get-url');
+const getUrl = require('../support/generic/get-url');
 const merge = require('deepmerge');
 const request = require('request-promise');
-const standingOrderServiceRequestHeadersTemplate = require('../support/template/headers/standing-order-service-request.json');
-const headerStore = require('../support/store/header');
-const responseStore = require('../support/store/response');
-const StandingOrderServiceRequestRequestBuilder = require('../support/builder/request/standing-order-service-request');
-const StandingOrderServiceRequestResponseBuilder = require('../support/builder/response/standing-order-service-request');
+const defaultHeaders = require('../support/standing-order-service-request/template/headers/default.json');
+const headerStore = require('../support/generic/store/header');
+const responseStore = require('../support/generic/store/response');
+const StandingOrderServiceRequestRequestBuilder = require('../support/standing-order-service-request/builder/request/standing-order-service-request.js');
+const StandingOrderServiceRequestResponseBuilder = require('../support/standing-order-service-request/builder/response/standing-order-service-request.js');
 
 Given(/^I set the default headers for standing order service request API$/, function () {
-  headerStore.setAll(standingOrderServiceRequestHeadersTemplate);
+  headerStore.setAll(defaultHeaders);
 });
 
 const defaultOpts = {

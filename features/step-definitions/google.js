@@ -1,7 +1,7 @@
 /* global browser */
 
 const { Given, When, Then } = require('cucumber');
-const google = require('../support/page-object/google');
+const google = require('../support/google/page-object/google');
 const { expect } = require('chai');
 
 Given(/^I navigate to Google$/, () => {

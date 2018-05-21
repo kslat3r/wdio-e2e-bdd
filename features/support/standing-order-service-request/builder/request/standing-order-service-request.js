@@ -1,8 +1,8 @@
+const RequestBuilder = require('../../../generic/builder/request');
 const merge = require('deepmerge');
 const data = require('../../template/request/standing-order-service-request.json');
-const Builder = require('./builder');
 
-class StandingOrderServiceRequestBuilder extends Builder {
+class StandingOrderServiceRequestBuilder extends RequestBuilder {
   constructor () {
     super(merge({}, data));
 

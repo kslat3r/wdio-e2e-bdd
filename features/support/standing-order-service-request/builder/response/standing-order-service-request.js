@@ -1,18 +1,16 @@
-const ResponseBuilder = require('./builder');
+const ResponseBuilder = require('../../../generic/builder/response');
 const merge = require('deepmerge');
 const data = require('../../template/response/standing-order-service-request.json');
 
 class StandingOrderServiceRequestResponseBuilder extends ResponseBuilder {
   constructor (id, creationDateTime, statusUpdateDateTime) {
-    super();
-
-    this.data = merge({}, data, {
+    super(merge({}, data, {
       Data: {
         StandingOrderServiceRequestId: id,
         CreationDateTime: creationDateTime,
         StatusUpdateDateTime: statusUpdateDateTime
       }
-    });
+    }));
   }
 }
 
