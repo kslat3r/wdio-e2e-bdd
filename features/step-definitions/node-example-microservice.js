@@ -1,4 +1,5 @@
 const { Given, When, Then } = require('cucumber');
+const merge = require('deepmerge');
 const UserMockBuilder = require('../support/node-example-microservice/builder/mock/user');
 const UsersMockBuilder = require('../support/node-example-microservice/builder/mock/users');
 const TodosMockBuilder = require('../support/node-example-microservice/builder/mock/todos');
@@ -10,6 +11,14 @@ const UserResponseBuilder = require('../support/node-example-microservice/builde
 const UsersResponseBuilder = require('../support/node-example-microservice/builder/response/users');
 const headerStore = require('../support/common/store/header');
 const responseStore = require('../support/common/store/response');
+
+const defaultOpts = {
+  method: 'GET',
+  uri: `${getUrl('nodeExampleMicroservice')}/users`,
+  json: true,
+  timeout: 100000,
+  resolveWithFullResponse: true
+};
 
 Given(/^user with ID (.*) exists with todos$/, async function (id) {
   const user = new UserMockBuilder(id);
@@ -43,19 +52,11 @@ Given(/^retrieving all users throws an error from downstream system with statusC
   await users.create(mockDetails);
 });
 
-When(/^I set the default headers for node example microservice API$/, function () {
-  headerStore.setAll(defaultHeaders);
-});
-
-When(/^I request user with ID (.*)$/, async function (id) {
-  const opts = {
-    method: 'GET',
-    uri: `${getUrl('nodeExampleMicroservice')}/users/${id}`,
-    json: true,
-    timeout: 100000,
-    resolveWithFullResponse: true,
-    headers: headerStore.getAll()
-  };
+When(/^I request user with ID (.*) with no headers$/, async function (id) {
+  const opts = merge(defaultOpts, {
+    uri: `${defaultOpts.uri}/${id}`,
+    headers: {}
+  });
 
   let response;
 
@@ -71,15 +72,55 @@ When(/^I request user with ID (.*)$/, async function (id) {
   responseStore.set(response);
 });
 
-When(/^I request all users$/, async function () {
-  const opts = {
-    method: 'GET',
-    uri: `${getUrl('nodeExampleMicroservice')}/users`,
-    json: true,
-    timeout: 100000,
-    resolveWithFullResponse: true,
+When(/^I request user with ID (.*) with default headers$/, async function (id) {
+  headerStore.setAll(defaultHeaders);
+
+  const opts = merge(defaultOpts, {
+    uri: `${defaultOpts.uri}/${id}`,
     headers: headerStore.getAll()
-  };
+  });
+
+  let response;
+
+  try {
+    response = await request(opts);
+  } catch (e) {
+    response = {
+      statusCode: e.statusCode,
+      body: e.error
+    };
+  }
+
+  responseStore.set(response);
+});
+
+When(/^I request all users with no headers$/, async function () {
+  headerStore.deleteAll();
+
+  const opts = merge(defaultOpts, {
+    headers: {}
+  });
+
+  let response;
+
+  try {
+    response = await request(opts);
+  } catch (e) {
+    response = {
+      statusCode: e.statusCode,
+      body: e.error
+    };
+  }
+
+  responseStore.set(response);
+});
+
+When(/^I request all users with default headers$/, async function () {
+  headerStore.setAll(defaultHeaders);
+
+  const opts = merge(defaultOpts, {
+    headers: headerStore.getAll()
+  });
 
   let response;
 

@@ -1,4 +1,4 @@
-const { Given, When, Then } = require('cucumber');
+const { When, Then } = require('cucumber');
 const getUrl = require('../support/common/get-url');
 const merge = require('deepmerge');
 const request = require('request-promise');
@@ -8,10 +8,6 @@ const responseStore = require('../support/common/store/response');
 const StandingOrderServiceRequestRequestBuilder = require('../support/standing-order-service-request/builder/request/standing-order-service-request.js');
 const StandingOrderServiceRequestResponseBuilder = require('../support/standing-order-service-request/builder/response/standing-order-service-request.js');
 
-Given(/^I set the default headers for standing order service request API$/, function () {
-  headerStore.setAll(defaultHeaders);
-});
-
 const defaultOpts = {
   method: 'POST',
   uri: `${getUrl('standingOrderServiceRequestChannelApi')}/standing-order-service-requests`,
@@ -20,9 +16,11 @@ const defaultOpts = {
   resolveWithFullResponse: true
 };
 
-When(/^I create a standing order service request$/, async function () {
+When(/^I create a standing order service request with default headers$/, async function () {
   const body = new StandingOrderServiceRequestRequestBuilder()
     .get();
+
+  headerStore.setAll(defaultHeaders);
 
   const opts = merge(defaultOpts, {
     headers: headerStore.getAll(),
@@ -43,13 +41,15 @@ When(/^I create a standing order service request$/, async function () {
   responseStore.set(response);
 });
 
-When(/^I create a standing order service request that has different payment amounts$/, async function () {
+When(/^I create a standing order service request that has different payment amounts with default headers$/, async function () {
   const body = new StandingOrderServiceRequestRequestBuilder()
     .setFirstPaymentAmount(1.00)
     .setNextPaymentAmount(2.00)
     .setFinalPaymentAmount(2.00)
     .get();
 
+  headerStore.setAll(defaultHeaders);
+
   const opts = merge(defaultOpts, {
     headers: headerStore.getAll(),
     body
@@ -69,12 +69,14 @@ When(/^I create a standing order service request that has different payment amou
   responseStore.set(response);
 });
 
-When(/^I create a standing order service request that has different payment date\/times$/, async function () {
+When(/^I create a standing order service request that has different payment date\/times with default headers$/, async function () {
   const body = new StandingOrderServiceRequestRequestBuilder()
     .setFirstPaymentDateTime('2014-04-16T16:20:43.154Z')
     .setNextPaymentDateTime('2015-04-16T16:20:43.154Z')
     .setFinalPaymentDateTime('2016-04-16T16:20:43.154Z')
     .get();
+
+  headerStore.setAll(defaultHeaders);
 
   const opts = merge(defaultOpts, {
     headers: headerStore.getAll(),

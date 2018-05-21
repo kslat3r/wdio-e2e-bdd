@@ -1,5 +1,5 @@
-const headerStore = require('../features/support/generic/store/header');
-const responseStore = require('../features/support/generic/store/response');
+const headerStore = require('../features/support/common/store/header');
+const responseStore = require('../features/support/common/store/response');
 
 module.exports = function (scenario) {
   headerStore.deleteAll();
