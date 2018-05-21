@@ -5,11 +5,10 @@ const UsersMockBuilder = require('../support/node-example-microservice/builder/m
 const TodosMockBuilder = require('../support/node-example-microservice/builder/mock/todos');
 const getMock = require('../support/common/get-mock');
 const getUrl = require('../support/common/get-url');
-const defaultHeaders = require('../support/node-example-microservice/template/headers/default.json');
 const request = require('request-promise');
+const NodeExampleMicroserviceHeaderBuilder = require('../support/node-example-microservice/builder/header/node-example-microservice');
 const UserResponseBuilder = require('../support/node-example-microservice/builder/response/user');
 const UsersResponseBuilder = require('../support/node-example-microservice/builder/response/users');
-const headerStore = require('../support/common/store/header');
 const responseStore = require('../support/common/store/response');
 
 const defaultOpts = {
@@ -73,11 +72,12 @@ When(/^I request user with ID (.*) with no headers$/, async function (id) {
 });
 
 When(/^I request user with ID (.*) with default headers$/, async function (id) {
-  headerStore.setAll(defaultHeaders);
+  const headers = new NodeExampleMicroserviceHeaderBuilder()
+    .getAll();
 
   const opts = merge(defaultOpts, {
     uri: `${defaultOpts.uri}/${id}`,
-    headers: headerStore.getAll()
+    headers
   });
 
   let response;
@@ -95,8 +95,6 @@ When(/^I request user with ID (.*) with default headers$/, async function (id) {
 });
 
 When(/^I request all users with no headers$/, async function () {
-  headerStore.deleteAll();
-
   const opts = merge(defaultOpts, {
     headers: {}
   });
@@ -116,10 +114,11 @@ When(/^I request all users with no headers$/, async function () {
 });
 
 When(/^I request all users with default headers$/, async function () {
-  headerStore.setAll(defaultHeaders);
+  const headers = new NodeExampleMicroserviceHeaderBuilder()
+    .getAll();
 
   const opts = merge(defaultOpts, {
-    headers: headerStore.getAll()
+    headers
   });
 
   let response;
