@@ -1,6 +1,6 @@
 const MockBuilder = require('../../../common/builder/mock');
 const merge = require('deepmerge');
-const template = require(`../../data/${process.env.TARGET_ENV}/response/todo.json`);
+const data = require(`../../data/${process.env.TARGET_ENV}/response/todo.json`);
 
 class TodosMockBuilder extends MockBuilder {
   constructor () {
@@ -23,7 +23,7 @@ class TodosMockBuilder extends MockBuilder {
     const responseBody = [];
 
     for (let i = 1; i < 4; i++) {
-      responseBody.push(merge(template, {
+      responseBody.push(merge(data, {
         id: i,
         userId: parseInt(userId, 10)
       }));

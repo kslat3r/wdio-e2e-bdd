@@ -1,6 +1,6 @@
 const MockBuilder = require('../../../common/builder/mock');
 const merge = require('deepmerge');
-const template = require(`../../data/${process.env.TARGET_ENV}/response/user.json`);
+const data = require(`../../data/${process.env.TARGET_ENV}/response/user.json`);
 
 class UserMockBuilder extends MockBuilder {
   constructor (id) {
@@ -14,7 +14,7 @@ class UserMockBuilder extends MockBuilder {
         'x-lbg-txn-correlation-id': '12345'
       })
       .setStatusCode(200)
-      .setResponseBody(merge(template, {
+      .setResponseBody(merge(data, {
         id: parseInt(id, 10)
       }));
 

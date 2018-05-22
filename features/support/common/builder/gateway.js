@@ -1,13 +1,13 @@
-const getGatewayUrl = require('../get-gateway-url');
+const getGateway = require('../get-gateway');
 const tpp = require(`../data/${process.env.TARGET_ENV}/tpp/default.json`);
 const HeaderBuilder = require('./header');
 const request = require('request-promise');
 
-class GatewayHeaderBuilder extends HeaderBuilder {
+class GatewayBuilder extends HeaderBuilder {
   async setAuthorizationBearerToken (brand = 'LYDS') {
-    const gatewayUrl = getGatewayUrl(brand);
+    const gateway = getGateway(brand);
 
-    if (!gatewayUrl) {
+    if (!gateway) {
       return this;
     }
 
@@ -20,7 +20,7 @@ class GatewayHeaderBuilder extends HeaderBuilder {
     try {
       response = await request({
         method: 'POST',
-        uri: `${gatewayUrl}/oidc-api/v1.1/token?grant_type=client_credentials&scope=payments`,
+        uri: `${gateway}/oidc-api/v1.1/token?grant_type=client_credentials&scope=payments`,
         headers
       });
     } catch (e) {
@@ -37,4 +37,4 @@ class GatewayHeaderBuilder extends HeaderBuilder {
   }
 }
 
-module.exports = GatewayHeaderBuilder;
+module.exports = GatewayBuilder;

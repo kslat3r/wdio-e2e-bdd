@@ -1,9 +1,10 @@
 const defaultHeaders = require(`../../data/${process.env.TARGET_ENV}/header/default.json`);
-const GatewayHeaderBuilder = require('../../../common/builder/gateway-header');
+const merge = require('deepmerge');
+const GatewayBuilder = require('../../../common/builder/gateway');
 
-class NodeExampleMicroserviceHeaderBuilder extends GatewayHeaderBuilder {
+class NodeExampleMicroserviceHeaderBuilder extends GatewayBuilder {
   constructor () {
-    super(defaultHeaders);
+    super(merge({}, defaultHeaders));
   }
 }
 

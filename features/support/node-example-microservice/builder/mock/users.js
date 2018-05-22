@@ -1,12 +1,12 @@
 const MockBuilder = require('../../../common/builder/mock');
 const merge = require('deepmerge');
-const template = require(`../../data/${process.env.TARGET_ENV}/response/user.json`);
+const data = require(`../../data/${process.env.TARGET_ENV}/response/user.json`);
 
 class UsersMockBuilder extends MockBuilder {
   constructor (ids) {
     super();
 
-    const responseBody = ids.map(id => merge(template, {
+    const responseBody = ids.map(id => merge(data, {
       id: parseInt(id, 10)
     }));
 

@@ -1,5 +1,5 @@
 const merge = require('deepmerge');
-const errorTemplate = require(`../data/${process.env.TARGET_ENV}/response/error.json`);
+const error = require(`../data/${process.env.TARGET_ENV}/response/error.json`);
 
 class MockBuilder {
   setMethod (method) {
@@ -88,7 +88,7 @@ class MockBuilder {
     }
 
     if (this.errorCode && this.errorMessage) {
-      this.body = merge(errorTemplate, {
+      this.body = merge(error, {
         error: {
           statusCode: this.statusCode,
           code: this.errorCode,
