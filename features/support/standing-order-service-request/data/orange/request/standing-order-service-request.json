@@ -1,0 +1,63 @@
+{
+  "Data": {
+    "StandingOrder": {
+      "Frequency": "IntrvlWkDay:01:05",
+      "Reference": "LunchMoney",
+      "FirstPaymentDateTime": "2062-04-16T16:20:43.154Z",
+      "FirstPaymentAmount": {
+        "Currency": "GBP",
+        "Amount": "5.00"
+      },
+      "NextPaymentDateTime": "2062-04-16T16:20:43.154Z",
+      "NextPaymentAmount": {
+        "Currency": "GBP",
+        "Amount": "5.00"
+      },
+      "FinalPaymentDateTime": "2062-04-16T16:20:43.154Z",
+      "FinalPaymentAmount": {
+        "Currency": "GBP",
+        "Amount": "5.00"
+      },
+      "DebtorAgent": {
+        "SchemeName": "BICFI",
+        "Identification": "12345678901234567890"
+      },
+      "DebtorAccount": {
+        "SchemeName": "IBAN",
+        "Identification": "5555222222222222222222",
+        "Name": "Deadpool"
+      },
+      "CreditorAgent": {
+        "SchemeName": "BICFI",
+        "Identification": "12345678901234567890"
+      },
+      "CreditorAccount": {
+        "SchemeName": "IBAN",
+        "Identification": "2222222222222222222222",
+        "Name": "Lunch Lady"
+      }
+    },
+    "Permissions": [
+      "CreateStandingOrder"
+    ]
+  },
+  "Risk": {
+    "PaymentContextCode": "BillPayment",
+    "MerchantCategoryCode": "1234",
+    "MerchantCustomerIdentification": "TEST123",
+    "DeliveryAddress": {
+      "AddressLine": [
+        "Apt 603"
+      ],
+      "StreetName": "35 Induscon",
+      "BuildingNumber": "Optional",
+      "PostCode": "E149DR",
+      "TownName": "ISLE OF DOG",
+      "CountrySubDivision": [
+        "OPTIONAL"
+      ],
+      "Country": "GB"
+    }
+  }
+}
+

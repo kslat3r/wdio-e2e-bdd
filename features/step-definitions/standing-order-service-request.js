@@ -15,8 +15,9 @@ const defaultOpts = {
   resolveWithFullResponse: true
 };
 
-When(/^I create a standing order service request with default headers$/, async function () {
-  const headers = new StandingOrderServiceRequestHeaderBuilder()
+When(/^I create a standing order service request with default headers for brand "(.*)"$/, async function (brand) {
+  const headers = await new StandingOrderServiceRequestHeaderBuilder()
+    .setAuthorizationBearerToken(brand)
     .getAll();
 
   const body = new StandingOrderServiceRequestRequestBuilder()
@@ -41,8 +42,9 @@ When(/^I create a standing order service request with default headers$/, async f
   responseStore.set(response);
 });
 
-When(/^I create a standing order service request that has different payment amounts with default headers$/, async function () {
-  const headers = new StandingOrderServiceRequestHeaderBuilder()
+When(/^I create a standing order service request that has different payment amounts with default headers for brand "(.*)"$/, async function (brand) {
+  const headers = await new StandingOrderServiceRequestHeaderBuilder()
+    .setAuthorizationBearerToken(brand)
     .getAll();
 
   const body = new StandingOrderServiceRequestRequestBuilder()
@@ -70,8 +72,9 @@ When(/^I create a standing order service request that has different payment amou
   responseStore.set(response);
 });
 
-When(/^I create a standing order service request that has different payment date\/times with default headers$/, async function () {
-  const headers = new StandingOrderServiceRequestHeaderBuilder()
+When(/^I create a standing order service request that has different payment date\/times with default headers$/, async function (brand) {
+  const headers = await new StandingOrderServiceRequestHeaderBuilder()
+    .setAuthorizationBearerToken(brand)
     .getAll();
 
   const body = new StandingOrderServiceRequestRequestBuilder()

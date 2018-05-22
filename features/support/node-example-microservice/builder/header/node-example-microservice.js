@@ -1,4 +1,4 @@
-const defaultHeaders = require('../../template/header/default.json');
+const defaultHeaders = require(`../../data/${process.env.TARGET_ENV}/header/default.json`);
 const HeaderBuilder = require('../../../common/builder/header');
 
 class NodeExampleMicroserviceHeaderBuilder extends HeaderBuilder {

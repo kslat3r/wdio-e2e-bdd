@@ -1,0 +1,62 @@
+{
+  "Data": {
+    "StandingOrderServiceRequestId": "YOLO",
+    "Permissions": ["CreateStandingOrder"],
+    "CreationDateTime": "test",
+    "StatusUpdateDateTime": "test",
+    "Status": "AwaitingAuthorisation",
+    "StandingOrder": {
+      "Frequency": "EvryDay",
+      "Reference": "string",
+      "FirstPaymentDateTime": "2018-04-19T10:28:44.734Z",
+      "FirstPaymentAmount": {
+        "Amount": "5.00",
+        "Currency": "GBP"
+      },
+      "NextPaymentDateTime": "2018-04-19T10:28:44.734Z",
+      "NextPaymentAmount": {
+        "Amount": "5.00",
+        "Currency": "GBP"
+      },
+      "FinalPaymentDateTime": "2018-04-19T10:28:44.734Z",
+      "FinalPaymentAmount": {
+        "Amount": "5.00",
+        "Currency": "GBP"
+      },
+      "DebtorAgent": {
+        "SchemeName": "BICFI",
+        "Identification": "string"
+      },
+      "DebtorAccount": {
+        "SchemeName": "IBAN",
+        "Identification": "2222222222222222222222",
+        "Name": "string",
+        "SecondaryIdentification": "string"
+      },
+      "CreditorAgent": {
+        "SchemeName": "BICFI",
+        "Identification": "string"
+      },
+      "CreditorAccount": {
+        "SchemeName": "IBAN",
+        "Identification": "2222222222222222222222",
+        "Name": "string",
+        "SecondaryIdentification": "string"
+      }
+    }
+  },
+  "Risk": {
+    "PaymentContextCode": "BillPayment",
+    "MerchantCategoryCode": "APC",
+    "MerchantCustomerIdentification": "string",
+    "DeliveryAddress": {
+      "AddressLine": ["string"],
+      "StreetName": "string",
+      "BuildingNumber": "string",
+      "PostCode": "string",
+      "TownName": "string",
+      "CountrySubDivision": ["string"],
+      "Country": "EU"
+    }
+  }
+}

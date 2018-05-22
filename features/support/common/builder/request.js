@@ -1,4 +1,4 @@
-class Builder {
+class RequestBuilder {
   constructor (data) {
     this.data = data;
 
@@ -10,4 +10,4 @@ class Builder {
   }
 }
 
-module.exports = Builder;
+module.exports = RequestBuilder;

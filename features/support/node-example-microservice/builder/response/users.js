@@ -1,7 +1,7 @@
 const ResponseBuilder = require('../../../common/builder/response');
 const merge = require('deepmerge');
-const userTemplate = require('../../template/response/user.json');
-const todoTemplate = require('../../template/response/todo.json');
+const userTemplate = require(`../../data/${process.env.TARGET_ENV}/response/user.json`);
+const todoTemplate = require(`../../data/${process.env.TARGET_ENV}/response/todo.json`);
 
 class UsersResponseBuilder extends ResponseBuilder {
   constructor (id) {

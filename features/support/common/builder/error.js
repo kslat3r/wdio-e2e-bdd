@@ -1,6 +1,6 @@
 const ResponseBuilder = require('./response');
 const merge = require('deepmerge');
-const errorTemplate = require('../template/response/error.json');
+const errorTemplate = require(`../data/${process.env.TARGET_ENV}/response/error.json`);
 
 class ErrorBuilder extends ResponseBuilder {
   constructor (statusCode, errorCode, message) {

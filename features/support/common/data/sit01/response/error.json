@@ -1,0 +1,7 @@
+{
+  "error": {
+    "statusCode": 400,
+    "message": "My message",
+    "code": "MY_CODE"
+  }
+}

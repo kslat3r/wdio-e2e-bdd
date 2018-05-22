@@ -1,6 +1,6 @@
 const MockBuilder = require('../../../common/builder/mock');
 const merge = require('deepmerge');
-const template = require('../../template/response/todo.json');
+const template = require(`../../data/${process.env.TARGET_ENV}/response/todo.json`);
 
 class TodosMockBuilder extends MockBuilder {
   constructor () {

@@ -2,6 +2,7 @@ const afterScenario = require('./hooks/after-scenario');
 
 exports.config = {
   mocks: {},
+  gateway: {},
   urls: {},
 
   //
@@ -62,7 +63,7 @@ exports.config = {
   sync: true,
   //
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'verbose',
+  logLevel: 'error',
   //
   // Enables colors for log output.
   coloredLogs: true,

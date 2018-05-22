@@ -1,6 +1,6 @@
 const ResponseBuilder = require('../../../common/builder/response');
 const merge = require('deepmerge');
-const data = require('../../template/response/standing-order-service-request.json');
+const data = require(`../../data/${process.env.TARGET_ENV}/response/standing-order-service-request.json`);
 
 class StandingOrderServiceRequestResponseBuilder extends ResponseBuilder {
   constructor (id, creationDateTime, statusUpdateDateTime) {
